@@ -1,21 +1,44 @@
 @(message: String,
 	countries:List[es.weso.wimock.CountryExpr], 
-	years: List[es.weso.wimock.YearExpr])
+	years: List[es.weso.wimock.YearExpr],
+	indicators: List[es.weso.wimock.Indicator]
+	)
 
 @main("Compare") {
     <h1>Comparison</h1>
     @message
+    
+    @if(countries.isEmpty) {
+     <h2>No country selection</h2>
+    } else {
     <h2>Countries</h2>
     <ul>
     @for(country <- countries) {
   		<li>@country.toString</li>
 	} 
 	</ul>
+	}
 
-    <h2>List of years</h2>
+    @if(years.isEmpty) {
+     <h2>No year selection</h2>
+    } else {
+     <h2>List of years</h2>
+     <ul>
+      @for(year <- years) {
+  	 	<li>@year.toString</li>
+	  } 
+	  </ul>
+	}
+	
+	@if(indicators.isEmpty) {
+	<h2>No indicator selected</h2>
+	} else {
+	<h2>List of Indicators</h2>
     <ul>
-    @for(year <- years) {
-  		<li>@year.toString</li>
+    @for(ind <- indicators) {
+  		<li>@ind.toString</li>
 	} 
 	</ul>
+	}
+	
 }

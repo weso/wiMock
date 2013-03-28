@@ -6,14 +6,17 @@ import es.weso.wimock._
 
 object Compare extends Controller {
   // Name of request parameters
-  val country = "country"
-  val year = "year"
+  val country 	= "country"
+  val year 		= "year"
+  val indicator = "indicator"
     
   def index = Action { request => {
     try {
     val countries = getCountries(request)
     val years = getYears(request)
-    Ok(views.html.compare("Comparing elements",countries,years))
+    val indicators = getIndicators(request)
+
+    Ok(views.html.compare("Comparing elements",countries,years,indicators))
     } catch {
         case e: ParseRouteException => BadRequest(e.msg)
     }
@@ -32,6 +35,14 @@ object Compare extends Controller {
     if (request.queryString.contains(year)) {
     	val py = new ParseYear
    		py.extractYears(request.queryString(year).headOption.getOrElse(""))
+    } 
+    else Nil
+  }
+
+   def getIndicators(request : Request[AnyContent]) : List[Indicator] = {
+    if (request.queryString.contains(indicator)) {
+    	val pi = new ParseIndicator
+   		pi.extractIndicators(request.queryString(indicator).headOption.getOrElse(""))
     } 
     else Nil
   }
