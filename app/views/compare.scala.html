@@ -1,0 +1,21 @@
+@(message: String,
+	countries:List[es.weso.wimock.CountryExpr], 
+	years: List[es.weso.wimock.YearExpr])
+
+@main("Compare") {
+    <h1>Comparison</h1>
+    @message
+    <h2>Countries</h2>
+    <ul>
+    @for(country <- countries) {
+  		<li>@country.toString</li>
+	} 
+	</ul>
+
+    <h2>List of years</h2>
+    <ul>
+    @for(year <- years) {
+  		<li>@year.toString</li>
+	} 
+	</ul>
+}
