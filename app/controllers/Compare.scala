@@ -6,7 +6,7 @@ import play.api.mvc._
 object Compare extends Controller {
   
   def index = Action {
-    Ok(views.html.index("Compare tool."))
+    Ok(views.html.index("Compare elements in webindex"))
   }
   
 }
