@@ -16,10 +16,10 @@ case class Range(start:Int,end:Int) extends YearExpr {
 
   for (y <- start to end) {
     if (!YearExpr.availableYears.contains(y))
-      throw WIMockException("Year " + y + " in range (" + start + "," + end + ") is not available. Years available: " + YearExpr.availableYears.mkString(", "))
+      throw WIMockException("Year " + y + " in range (" + start + "-" + end + ") is not available. Years available: " + YearExpr.availableYears.mkString(", "))
   }
 
-  override def toString : String = "range(" + start.toString + "," + end.toString + ")"
+  override def toString : String = "range(" + start.toString + "-" + end.toString + ")"
 }
 
 object YearExpr {
