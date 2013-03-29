@@ -1,0 +1,14 @@
+@(ex: Throwable)
+
+@main("WiMock") {
+    <h1>Error</h1>
+    <p>I am afraid there was an error</p>
+    <p>More info: </p>
+    <pre>
+    @ex.toString
+    </pre>
+    
+    <ul>
+    <li>You can go to <a href="@routes.Application.index">Main entry page</a></li>
+    </ul> 
+}

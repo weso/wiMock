@@ -20,7 +20,7 @@ class ParseYear {
     yearListRegex findFirstIn s match {
       case Some(str) => 
         yearItemRegex.findAllIn(str).map(item => extractYearExpr(item)).toList
-      case None => throw new ParseRouteException("Cannot parse " + s + " with " + yearListRegex)
+      case None => throw new WIMockException("Cannot parse " + s + " with " + yearListRegex)
     }  
     }
   }
@@ -31,7 +31,7 @@ class ParseYear {
     s match {
       case rangeRegex(start,end) => new Range(start.toInt,end.toInt)
       case yearRegex(y) => new SingleYear(y.toInt)
-      case _ => throw new ParseRouteException("Cannot parse " + s + "as a year or range")
+      case _ => throw new WIMockException("Cannot parse " + s + "as a year or range")
     } 
   }
 

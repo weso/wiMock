@@ -1,0 +1,23 @@
+
+<webindex>/compare/country=es
+   countries=es
+   years = *
+   indicators = *
+
+<webindex>/compare/country=es,fr
+	countries=es,fr
+	years=*
+	indicators=*
+
+<webindex>/compare/country=es,region(europe)&indicator=ITUA
+   countries=es,all the countries associated with europe
+   years=*
+   indicators=ITUA
+   
+ Generic query
+ -------------
+ <webindex>/compare/country=c1,c2...&years=y1,y2...&indicators=i1,i2...
+ 
+ SELECT {
+  o ...
+ }

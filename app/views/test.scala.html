@@ -1,0 +1,13 @@
+@(message: String)
+
+@main("Wimock") {
+    
+    <h1>@message</h1>
+    <ul>
+    <li>Available countries: @play.Play.application().configuration().getString("wimock.availableCountries")</li>
+    <li>Available years: @play.Play.application().configuration().getString("wimock.availableYears")</li>
+    <li>Available indicators: @play.Play.application().configuration().getString("wimock.availableIndicators")</li>
+    <li><a href="@(routes.Compare.index)">Comparison examples</a></li>
+    </ul>
+    
+}

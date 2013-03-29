@@ -22,7 +22,7 @@ class ParseCountry {
     countryItemListRegex findFirstIn s match {
       case Some(str) => 
         countryItemRegex.findAllIn(str).map(item => extractCountryExpr(item)).toList
-      case None => throw new ParseRouteException("Cannot parse " + s + " with " + countryItemListRegex)
+      case None => throw new WIMockException("Cannot parse " + s + " with " + countryItemListRegex)
     }  
     }
   }
@@ -37,7 +37,7 @@ class ParseCountry {
       case regionRegex(name) => new NamedRegion(name)
       case groupRegex(cs,_,_,_) => new Group(extractSingleCountries(cs))
       case countryRegex(c) => new SingleCountry(c)
-      case _ => throw new ParseRouteException("Cannot parse " + s + " as a country or group")
+      case _ => throw new WIMockException("Cannot parse " + s + " as a country or group")
     } 
   }
   
@@ -47,7 +47,7 @@ class ParseCountry {
 	  countryListRegex findFirstIn s match {
     	  case Some(str) => 
         	    countryCodeRegex.findAllIn(str).map(item => new SingleCountry(item)).toList
-		  case None => throw new ParseRouteException("Cannot parse " + s + " with " + countryListRegex)
+		  case None => throw new WIMockException("Cannot parse " + s + " with " + countryListRegex)
 	}  
   }
 

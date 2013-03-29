@@ -15,7 +15,7 @@ class ParseIndicator {
     indicatorListRegex findFirstIn s match {
       case Some(str) => 
         indicatorRegex.findAllIn(str).map(item => new Indicator(item)).toList
-      case None => throw new ParseRouteException("Cannot parse " + s + " with " + indicatorListRegex)
+      case None => throw new WIMockException("Cannot parse " + s + " with " + indicatorListRegex)
     }  
     }
   }

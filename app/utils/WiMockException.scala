@@ -1,3 +1,4 @@
 package es.weso.wimock
 
-case class ParseRouteException(msg: String) extends Exception
+case class WIMockException(msg: String) extends Exception
+

@@ -1,7 +1,8 @@
 @(message: String,
 	countries:List[es.weso.wimock.CountryExpr], 
 	years: List[es.weso.wimock.YearExpr],
-	indicators: List[es.weso.wimock.Indicator]
+	indicators: List[es.weso.wimock.Indicator],
+	observations: List[Observation]
 	)
 
 @main("Compare") {
@@ -40,5 +41,13 @@
 	} 
 	</ul>
 	}
+	
+	<h2>Observations</h2>
+	<table>
+	<tr><th>Country</th><th>Indicator</th><th>Year</th><th>Value</th></tr>
+	@for(obs <- observations) {
+	 <tr><td>@obs.country</td><td>@obs.indicator</td><td>@obs.year</td><td>@obs.value</td></tr>
+	}
+	</table>
 	
 }
