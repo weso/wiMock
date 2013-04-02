@@ -7,7 +7,7 @@ import models.Observation
 import play.api.libs.json._
 import play.api.libs.Jsonp
 import play.api.libs.iteratee._
-
+import es.weso.utils._
 
 object Compare extends Controller {
   // Name of request parameters
@@ -41,10 +41,7 @@ object Compare extends Controller {
 
   def prepareJSON(request: Request[AnyContent], observations : List[Observation]) = {
     val json = Observation.jsonize(observations)
-    request.queryString.get("callback").flatMap(_.headOption) match {
-        case Some(callback) => Ok(Jsonp(callback, json))
-        case None => Ok(json)
-    }
+    MyJson.prepareJSON(request,json)
   }
   
   def prepareTurtle(request: Request[AnyContent], observations : List[Observation]) = {

@@ -1,0 +1,12 @@
+@(country: Country)
+
+@main("Wimock") {
+    
+    <h1>@country.name</h1>
+    <ul>
+    <li>@country.code</li>
+    <li>@country.ranking</li>
+    <li><a href="@(routes.Compare.index)">Comparison examples</a></li>
+    </ul>
+    
+}

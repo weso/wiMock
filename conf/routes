@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index
+GET     /country/:code				controllers.Application.country(code:String)
 GET     /test                       controllers.Test.index
 
 GET     /compare                    controllers.Compare.index

@@ -98,8 +98,8 @@ object Observation {
 """@prefix wi-ontology: <http://data.webfoundation.org/webindex/ontology/>.
 @prefix wi-obs: <http://data.webfoundation.org/webindex/observation/> .
 @prefix wi-ind: <http://data.webfoundation.org/webindex/indicator/> .
-@prefix wi-ind: <http://data.webfoundation.org/webindex/country/> .
-@prefix wi-ind: <http://data.webfoundation.org/webindex/ref-year/> .
+@prefix wi-country: <http://data.webfoundation.org/webindex/country/> .
+@prefix wi-year: <http://data.webfoundation.org/webindex/ref-year/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
    
 
