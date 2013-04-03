@@ -9,6 +9,7 @@ import play.api.libs.Jsonp
 
 case class Country(
     code: String,
+    code2: String,
 	name: String,
 	ranking: Int,
 	score: Double
@@ -17,7 +18,8 @@ case class Country(
   def toJson : JsValue = {
     Json.toJson(Map (
     			"code" -> Json.toJson(code),
-                "name" -> Json.toJson (name),
+    			"code2" -> Json.toJson(code2),
+				"name" -> Json.toJson (name),
                 "score" -> Json.toJson (score),
                 "ranking" -> Json.toJson (ranking)
                 )
@@ -42,7 +44,7 @@ object Country {
   var countries : List[Country] = Nil;
   
   def find(code: String) : Option[Country] = {
-    countries.find(c => c.code == code).headOption
+    countries.find(c => c.code == code || c.code2 == code).headOption 
   }
   
   def findAll() : List[Country] = {
@@ -51,5 +53,10 @@ object Country {
 
   def create(country: Country) = {
     countries = country :: countries
+  }
+  
+  def availableCountries : List[String] = {
+    countries.map(c => c.code) ++ 
+    countries.map(c => c.code2)
   }
 }

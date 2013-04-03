@@ -44,10 +44,10 @@ object InitialData {
     if(Country.findAll.isEmpty) {
       
       Seq(
-        Country("USA","United States of America",2,97.31),
-        Country("SWE","Sweden",1,100),
-        Country("ESP","Spain",18,72.12),
-        Country("FRA","France",14,78.93)
+        Country("USA","us","United States of America",2,97.31),
+        Country("SWE","se","Sweden",1,100),
+        Country("ESP","es","Spain",18,72.12),
+        Country("FRA","fr","France",14,78.93)
       ).foreach(Country.create)
     }
  }

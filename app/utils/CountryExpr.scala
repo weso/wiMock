@@ -1,9 +1,11 @@
 package es.weso.wimock
 
+import models._
+
 abstract class CountryExpr
 case class SingleCountry(code: String) extends CountryExpr {
   if (!CountryExpr.availableCountries.contains(code))
-    throw WIMockException("Country " + code + " is not available. Must be one of " + CountryExpr.availableCountries.mkString(", "))
+    throw WIMockException("Country " + code + " is not available. Must be one of " + Country.availableCountries.mkString(", "))
 
   override def toString() : String = code
 }
@@ -21,6 +23,6 @@ case class NamedRegion(name: String) extends CountryExpr {
 }
 
 object CountryExpr {
-   val availableCountries = play.Play.application().configuration().getString("wimock.availableCountries").split(",")
+   val availableCountries = Country.availableCountries
    val availableRegions = play.Play.application().configuration().getString("wimock.availableRegions").split(",")
 }
