@@ -15,12 +15,15 @@ object Application extends Controller {
   }
   
   def country(code: String) = Action { implicit request =>
-    val country = Country.find(code)
-    request match {
-      case Accepts.Html() => Ok(views.html.country(country))
-      case Accepts.Json() => MyJson.prepareJSON(request,country.toJson)
-      case TextTurtle() => prepareTurtle(request,country)
-      case _ => BadRequest("Cannot handle accept header: " + request.accept.mkString(",") )
+    Country.find(code) match {
+      case Some(country) =>
+      	request match {
+      		case Accepts.Html() => Ok(views.html.country(country))
+      		case Accepts.Json() => MyJson.prepareJSON(request,country.toJson)
+      		case TextTurtle() => prepareTurtle(request,country)
+      		case _ => BadRequest("Cannot handle accept header: " + request.accept.mkString(",") )
+      	}
+      case None => BadRequest("Country " + code + " not found")	
     }
   }
 

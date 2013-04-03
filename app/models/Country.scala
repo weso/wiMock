@@ -39,8 +39,17 @@ case class Country(
 
 object Country {
  
-  def find(code: String) : Country = {
-    return new Country("ESP","Spain",18,72.12)
+  var countries : List[Country] = Nil;
+  
+  def find(code: String) : Option[Country] = {
+    countries.find(c => c.code == code).headOption
+  }
+  
+  def findAll() : List[Country] = {
+    countries;
   }
 
+  def create(country: Country) = {
+    countries = country :: countries
+  }
 }

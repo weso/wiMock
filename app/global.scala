@@ -1,8 +1,13 @@
 import play.api._
 import play.api.mvc._
 import play.api.mvc.Results._
+import models._
 
 object Global extends GlobalSettings {
+
+  override def onStart(app: Application) {
+    InitialData.insert()
+  }
 
 
   override def onHandlerNotFound(request: RequestHeader): Result = {
@@ -29,4 +34,21 @@ object Global extends GlobalSettings {
   }
   
   
+}
+
+
+object InitialData {
+  
+  def insert() = {
+    
+    if(Country.findAll.isEmpty) {
+      
+      Seq(
+        Country("USA","United States of America",2,97.31),
+        Country("SWE","Sweden",1,100),
+        Country("ESP","Spain",18,72.12),
+        Country("FRA","France",14,78.93)
+      ).foreach(Country.create)
+    }
+ }
 }
