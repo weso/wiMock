@@ -13,16 +13,35 @@ class IntegrationSpec extends Specification {
   
   "Application" should {
     
-    "work from within a browser" in {
+    "work within a browser" in {
       running(TestServer(3333), HTMLUNIT) { browser =>
-
         browser.goTo("http://localhost:3333/")
+        browser.pageSource must contain("Web Index Mock")
+      }
+    }
 
-        browser.pageSource must contain("Your new application is ready.")
-       
+    "Get comparison" in {
+      running(TestServer(3333), HTMLUNIT) { browser =>
+        browser.goTo("http://localhost:3333/compare")
+        browser.pageSource must contain("Comparison")
       }
     }
     
+    "Get not found" in {
+      running(TestServer(3333), HTMLUNIT) { browser =>
+        browser.goTo("http://localhost:3333/booom")
+        browser.pageSource must contain("Page not found")
+      }
+    }
+    
+    "Get compare es and fr" in {
+      running(TestServer(3333), HTMLUNIT) { browser =>
+        browser.goTo("http://localhost:3333/compare?country=es,fr")
+        browser.pageSource must contain("Spain")
+        browser.pageSource must contain("France")
+      }
+    }
+
   }
   
 }

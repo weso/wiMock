@@ -4,10 +4,11 @@ import models._
 
 abstract class CountryExpr
 case class SingleCountry(code: String) extends CountryExpr {
-  if (!CountryExpr.availableCountries.contains(code))
+  if (!Country.availableCountries.contains(code))
     throw WIMockException("Country " + code + " is not available. Must be one of " + Country.availableCountries.mkString(", "))
+  val country : Country = Country.find(code).get
 
-  override def toString() : String = code
+  override def toString() : String = country.name + " - " + country.code
 }
 
 case class Group(countries: List[SingleCountry]) extends CountryExpr {

@@ -16,19 +16,13 @@ class CompareSpec extends Specification {
   "Compare service" should {
     
     
-    "send 404 on a bad request" in {
-      running(FakeApplication()) {
-        route(FakeRequest(GET, "/boum")) must beNone        
-      }
-    }
-    
     "render the compare page" in {
       running(FakeApplication()) {
         val home = route(FakeRequest(GET, "/compare")).get
         
         status(home) must equalTo(OK)
         contentType(home) must beSome.which(_ == "text/html")
-        contentAsString(home) must contain ("Comparing")
+        contentAsString(home) must contain ("Comparison")
       }
     }
 

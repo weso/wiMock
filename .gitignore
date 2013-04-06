@@ -6,6 +6,8 @@ test*.db
 .project
 .target/*
 .settings/*
+.idea
+.idea_modules
 
 # sbt specific
 dist/*
