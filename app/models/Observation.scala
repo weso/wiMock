@@ -73,13 +73,15 @@ object Observation {
    * It is calculated from the values of country, indicator and year by a dirty trick
    */
   def generate(country: String, indicator: String, year: Int) : Double = {
-    average(List(("0." + country.hashCode).toDouble, 
-    		     ("0." + indicator.hashCode).toDouble, 
-    		     ("0." + year).toDouble))
+    average(List(country.hashCode, indicator.hashCode, year).map(normalize))
   }
   
- def average(doubles: List[Double]) : Double = {
-   (0.0 /: doubles ){_ + _} / doubles.length
+ def average(vals: List[Double]) : Double = {
+   (0.0 /: vals ){_ + _} / vals.length
+ }
+ 
+ def normalize(x : Int) : Double = {
+   Math.sin(x).abs
  }
  
  def jsonize(observations : List[Observation]) : JsValue = {
