@@ -14,6 +14,14 @@ object Application extends Controller {
     Ok(views.html.index("WI-MOck - Web Index Mock"))
   }
   
+  def countries = Action { implicit request =>
+    val countries = Country.findAll()
+    request match {
+    case Accepts.Html() => Ok(views.html.countries(countries))
+	case _ => BadRequest("Cannot handle accept header: " + request.accept.mkString(",") )
+	}
+  }
+  
   def country(code: String) = Action { implicit request =>
     Country.find(code) match {
       case Some(country) =>

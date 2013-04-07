@@ -63,12 +63,12 @@ class CompareSpec extends Specification {
     }
 
     "route parsing group of two countries and a single country" in {
-      val route = "group(es,fr),cn"
+      val route = "group(es,fr),se"
       val expected = 
         List(new Group(
         		List(new SingleCountry("es"), 
         			 new SingleCountry("fr"))),
-            new SingleCountry("cn"))
+            new SingleCountry("se"))
       val pc = new ParseCountry()
       pc.extractCountries(route) must beEqualTo(expected)  
     }
@@ -83,7 +83,13 @@ class CompareSpec extends Specification {
       val pc = new ParseCountry()
       pc.extractCountries(route) must beEqualTo(expected)  
     }
-    
+
+    "route parsing a non-existing country" in {
+      val route = "boom"
+      val pc = new ParseCountry()
+      pc.extractCountries(route)  must throwA[WIMockException]
+    }
+
     "route parsing a year" in {
       val route = "2011"
       val expected = 

@@ -1,0 +1,12 @@
+@(countries: List[Country])
+
+@main("Wimock") {
+    
+    <h1>List of Countries</h1>
+    <table>
+    <tr><th>Name</th><th>Code</th><th>Code 2 chars</th></tr>
+        @countries.map { country =>
+	    <tr><td><a href="/country/@country.code">@country.name</a></td><td>@country.code</td><td>@country.code2</td></tr>
+	    }
+    </table>
+}

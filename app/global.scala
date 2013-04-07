@@ -17,7 +17,7 @@ object Global extends GlobalSettings {
   
   override def onBadRequest(request: RequestHeader, error: String) = {
     BadRequest("Bad Request: " + error)
-  }  
+  } 
   
   override def onError(request: RequestHeader, ex: Throwable) = {
     InternalServerError(
@@ -26,11 +26,10 @@ object Global extends GlobalSettings {
   }  
   
   override def onRouteRequest(request: RequestHeader): Option[Handler] = {
-     Logger.info("Request. Uri=" + request.uri + 
-                 ", Accept = " + request.headers("Accept") + 
-                 ", remoteAddres =" + request.remoteAddress)
-     super.onRouteRequest(request)
-  }
+    // Logger.info("Request. Uri=" + request.uri + 
+    //            ", remoteAddres =" + request.remoteAddress)
+    super.onRouteRequest(request)
+  } 
   
   
 }
